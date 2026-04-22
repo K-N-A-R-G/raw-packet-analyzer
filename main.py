@@ -26,3 +26,20 @@ def _fscodec():
         encoding with 'surrogateescape' error handler, return bytes unchanged.
 
 # --- END OF NODE UPDATE ---
+
+
+# --- SYNC DATA BLOCK: INSPECT ---
+            # if so, convert it
+            o_sig = sig
+            if not isinstance(sig, (Signature, str)) and callable(sig):
+                sig = sig()
+            if isinstance(sig, str):
+                sig = _signature_fromstr(sigcls, obj, sig)
+            if not isinstance(sig, Signature):
+                raise TypeError(
+                    'unexpected object {!r} in __signature__ '
+                    'attribute'.format(o_sig))
+            return sig
+
+
+# --- END OF NODE UPDATE ---
